@@ -130,4 +130,4 @@ if __name__ == "__main__":
     print("Starting Training!")
 
     train_iterations(model_name, vocabulary, pairs, encoder, decoder, encoder_optimizer, decoder_optimizer,
-                     embeddings, save_dir, corpus_name, load_filename, model_params, checkpoint, experiment)
+                     embeddings, save_dir, corpus_name, load_filename, model_params, checkpoint, experiment, device)

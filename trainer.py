@@ -88,7 +88,7 @@ def train(input_variable, lengths, target_variable, mask, max_target_len, encode
 
 
 def train_iterations(model_name, vocabulary, pairs, encoder, decoder, encoder_optimizer, decoder_optimizer,
-                     embeddings, save_dir,corpus_name, load_filename, model_params, checkpoint, experiment: Experiment):
+                     embeddings, save_dir,corpus_name, load_filename, model_params, checkpoint, experiment: Experiment, device='cpu'):
 
     # Load batches for each iteration
     training_batches = [batch_to_train_data(vocabulary, [random.choice(pairs) for _ in range(model_params['batch_size'])])
@@ -113,7 +113,7 @@ def train_iterations(model_name, vocabulary, pairs, encoder, decoder, encoder_op
         # Run a training iteration with batch
         loss = train(input_variable, lengths, target_variable, mask, max_target_len, encoder,
                      decoder, embeddings, encoder_optimizer, decoder_optimizer, model_params['batch_size'],
-                     model_params['clip'], vocabulary, model_params['teacher_forcing_ratio'])
+                     model_params['clip'], vocabulary, model_params['teacher_forcing_ratio'], device=device)
         print_loss += loss
 
         # Print progress
