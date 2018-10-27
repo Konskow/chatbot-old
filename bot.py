@@ -25,7 +25,7 @@ def evaluate(encoder, decoder, searcher, voc, sentence, max_length=MAX_LENGTH, d
     return decoded_words
 
 
-def evaluate_input(encoder, decoder, searcher, vocabulary):
+def evaluate_input(encoder, decoder, searcher, vocabulary, device):
     input_sentence = ''
     while(1):
         try:
@@ -36,7 +36,7 @@ def evaluate_input(encoder, decoder, searcher, vocabulary):
             # Normalize sentence
             input_sentence = normalize_string(input_sentence)
             # Evaluate sentence
-            output_words = evaluate(encoder, decoder, searcher, vocabulary, input_sentence)
+            output_words = evaluate(encoder, decoder, searcher, vocabulary, input_sentence, device)
             # Format and print response sentence
             output_words[:] = [x for x in output_words if not (x == 'EOS' or x == 'PAD')]
             print('Bot:', ' '.join(output_words))
@@ -81,6 +81,6 @@ if __name__ == "__main__":
     decoder.eval()
 
     # Initialize search module
-    searcher = GreedySearchDecoder(encoder, decoder)
+    searcher = GreedySearchDecoder(encoder, decoder, device)
 
-    evaluate_input(encoder, decoder, searcher, vocabulary)
+    evaluate_input(encoder, decoder, searcher, vocabulary, device)
