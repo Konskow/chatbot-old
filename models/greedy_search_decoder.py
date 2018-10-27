@@ -9,7 +9,7 @@ class GreedySearchDecoder(nn.Module):
         self.decoder = decoder
         self.device = device
 
-    def forward(self, input_seq, input_length, max_length, vocabulary,):
+    def forward(self, input_seq, input_length, max_length, vocabulary):
         # Forward input through encoder model
         encoder_outputs, encoder_hidden = self.encoder(input_seq, input_length)
         # Prepare encoder's final hidden layer to be first hidden input to the decoder

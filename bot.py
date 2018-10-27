@@ -36,7 +36,7 @@ def evaluate_input(encoder, decoder, searcher, vocabulary, device):
             # Normalize sentence
             input_sentence = normalize_string(input_sentence)
             # Evaluate sentence
-            output_words = evaluate(encoder, decoder, searcher, vocabulary, input_sentence, device)
+            output_words = evaluate(encoder, decoder, searcher, vocabulary, input_sentence, device=device)
             # Format and print response sentence
             output_words[:] = [x for x in output_words if not (x == 'EOS' or x == 'PAD')]
             print('Bot:', ' '.join(output_words))
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     vocabulary = {}
     model_params = {}
 
-    load_filename = 'temp/chatbot/corpus/2-2_500/1000_checkpoint.tar'
+    load_filename = 'temp2/chatbot/corpus/2-2_500/4000_checkpoint.tar'
     checkpoint = torch.load(load_filename)
     # If loading a model trained on GPU to CPU
     # checkpoint = torch.load(loadFilename, map_location=torch.device('cpu'))
